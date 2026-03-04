@@ -1,0 +1,40 @@
+name: Pipeline de Testes Automatizados (API & E2E)
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Instalar Dependências
+        run: npm install
+
+      - name: Executar Testes de API e E2E (Headless)
+        run: npm run cy:run # Executa os arquivos .cy.js e .feature
+        continue-on-error: true # Permite gerar o relatório mesmo se os testes falharem
+
+      - name: Gerar Allure Report
+        run: |
+          npm run allure:report
+          
+      - name: Publicar Relatório no GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          destination_dir: reports/${{ github.run_number }}

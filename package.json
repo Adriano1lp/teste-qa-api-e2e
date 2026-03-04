@@ -1,0 +1,36 @@
+{
+  "name": "teste-qa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "npx cypress run --config video=false --env allure=true --browser=chrome",
+    "allure:clear": "rm -rf allure-results allure-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
+  },
+  "cypress-cucumber-preprocessor": {
+    "screenshotsFolder": "cypress/screenshots",
+    "messages": {
+      "enabled": true
+    },
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-results.json"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@shelex/cypress-allure-plugin": "^2.41.2",
+    "allure-commandline": "^2.37.0",
+    "allure-cypress": "^3.5.0",
+    "cypress": "^15.11.0",
+    "cypress-plugin-api": "^2.11.2"
+  }
+}

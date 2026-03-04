@@ -1,0 +1,6 @@
+{
+  "allure": {
+    "resultsDir": "cypress/reports/allure-results",
+    "reportDir": "cypress/reports/allure-report"
+  }
+}

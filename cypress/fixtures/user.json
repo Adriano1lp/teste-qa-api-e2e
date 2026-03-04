@@ -1,0 +1,24 @@
+{
+  "validUser": {
+    "id": 99999999910,
+    "category": {
+      "id": 2,
+      "name": "Vira-Lata"
+    },
+    "name": "PIG",
+    "photoUrls": [
+      "http:www.testefoto.com"
+    ],
+    "tags": [
+      {
+        "id": 0,
+        "name": "dog"
+      }
+    ],
+    "status": "available"
+  },
+  "invalidEmailUser": {
+    "username": "bad_user",
+    "email": "email_sem_arroba"
+  }
+}
