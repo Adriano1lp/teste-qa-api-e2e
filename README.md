@@ -20,7 +20,11 @@ Este repositório contém um framework robusto de automação de testes de API e
 ```bash
 npm install
 ```
-### 3. Execução
+### 3. Execução com geracao de relatorio allure
 ```bash
 npm run allure:clear && npm run cy:run && npm run allure:generate && npm run allure:open
+```
+### 4. Execução por interface de usuario
+```bash
+npm run cy:open
 ```
