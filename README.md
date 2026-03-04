@@ -19,7 +19,8 @@ Este repositório contém um framework robusto de automação de testes de API e
 ### 2. Instalar dependências
 ```bash
 npm install
-
+```
 ### 3. Execução
 ```bash
 npm run allure:clear && npm run cy:run && npm run allure:generate && npm run allure:open
+```
