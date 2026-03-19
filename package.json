@@ -7,9 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open":"npx cypress open",
     "cy:run": "npx cypress run --config video=false --env allure=true --browser=chrome",
-    "allure:clear": "rm -rf allure-results allure-report",
-    "allure:generate": "allure generate allure-results --clean -o allure-report",
-    "allure:open": "allure open allure-report"
+    "cy:run:e2e": "npx cypress run --spec \"cypress/e2e/ui/**/*.feature\" --config video=false --env allure=true --browser=chrome",
+    "cy:run:api": "npx cypress run --spec \"cypress/e2e/api/**/*.cy.js\" --config video=false --env allure=true --browser=chrome",
+    "cy:run:api:qa": "npm run cy:run:api -- --env targetEnv=qa",
+    "cy:run:api:hml": "npm run cy:run:api -- --env targetEnv=hml",
+    "cy:run:api:prod": "npm run cy:run:api -- --env targetEnv=prod",
+    "allure:clear": "node -e \"['allure-results','allure-report'].forEach((dir) => require('fs').rmSync(dir, { recursive: true, force: true }))\"",
+    "allure:generate": "node scripts/allure-runner.js generate allure-results --clean -o allure-report",
+    "allure:open": "node scripts/allure-runner.js open allure-report"
   },
   "cypress-cucumber-preprocessor": {
     "screenshotsFolder": "cypress/screenshots",

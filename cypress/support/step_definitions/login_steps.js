@@ -3,7 +3,7 @@ import { loginPage } from "../page/loginPage"
 
 // Fluxo Inicial
 Given("que eu acesso a página de login", () => {
-  cy.visit(Cypress.env('BASE_URL_UI'))
+  loginPage.acessarPagina()
 })
 
 // Ações
@@ -12,21 +12,19 @@ When("eu insiro o usuário {string} e a senha {string}", (usuario, senha) => {
 })
 
 When("clico no botão de login", () => {
-  loginPage.loginButton.click()
+  loginPage.clicarNoBotaoLogin()
 })
 
 // Assertivas Positivas
 Then("devo ser redirecionado para a página de produtos", () => {
-  cy.url().should("include", "/inventory.html")
+  loginPage.validarRedirecionamentoParaProdutos()
 })
 
 Then("devo visualizar o título {string}", (titulo) => {
-  cy.get(".title").should("have.text", titulo)
+  loginPage.validarTituloDaPagina(titulo)
 })
 
 // Assertivas Negativas
 Then("devo ver uma mensagem de erro contendo {string}", (mensagemEsperada) => {
-  cy.get('[data-test="error"]')
-    .should("be.visible")
-    .and("contain", mensagemEsperada)
+  loginPage.validarMensagemDeErro(mensagemEsperada)
 })

@@ -3,22 +3,20 @@ import { checkoutPage } from "../page/checkoutPage"
 import { loginPage } from "../page/loginPage"
 
 Given("que eu estou logado na aplicação", () => {
-  cy.visit(Cypress.env('BASE_URL_UI'))
-  loginPage.realizarLogin("standard_user", "secret_sauce")
-  loginPage.loginButton.click()
+  loginPage.acessarPagina()
+  loginPage.autenticarComCredenciaisPadrao()
 })
 
 Given("que eu adiciono o produto {string} ao carrinho", (produto) => {
-  cy.contains('.inventory_item', produto).find('button').click()
+  checkoutPage.adicionarProdutoAoCarrinhoPorNome(produto)
 })
 
 Given("que eu tenho produtos no carrinho", () => {
-  cy.get('[data-test^="add-to-cart"]').first().click()
+  checkoutPage.adicionarPrimeiroProdutoAoCarrinho()
 })
 
 Given("sigo para o checkout", () => {
-  cy.get('.shopping_cart_link').click()
-  cy.get('[data-test="checkout"]').click()
+  checkoutPage.acessarCheckout()
 })
 
 When("preencho os dados de entrega com {string}, {string} e {string}", (nome, sobrenome, zip) => {
@@ -26,13 +24,13 @@ When("preencho os dados de entrega com {string}, {string} e {string}", (nome, so
 })
 
 When("finalizo a compra", () => {
-  checkoutPage.finishButton.click()
+  checkoutPage.finalizarCompra()
 })
 
 Then("devo ver a mensagem de confirmação {string}", (mensagem) => {
-  checkoutPage.successHeader.should('have.text', mensagem)
+  checkoutPage.validarMensagemDeSucesso(mensagem)
 })
 
 Then("devo ver a mensagem de erro de checkout {string}", (erro) => {
-  checkoutPage.errorMessage.should('be.visible').and('contain', erro)
+  checkoutPage.validarMensagemDeErro(erro)
 })

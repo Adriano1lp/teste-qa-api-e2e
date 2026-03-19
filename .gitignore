@@ -5,3 +5,5 @@ cypress/reports
 cypress/videos
 cypress/screenshots
 cucumber-messages.ndjson
+checkout-run.log
+cypress-api-run.log

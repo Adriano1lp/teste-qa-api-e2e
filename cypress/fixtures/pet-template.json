@@ -1,0 +1,17 @@
+{
+  "category": {
+    "id": 2,
+    "name": "Vira-Lata"
+  },
+  "name": "pet-template",
+  "photoUrls": [
+    "https://example.com/default-pet.png"
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "dog"
+    }
+  ],
+  "status": "available"
+}
